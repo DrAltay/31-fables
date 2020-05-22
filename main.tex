@@ -15,15 +15,22 @@ normalheadings,DIV=9,twoside=false]{scrbook}
 \usepackage[T1]{fontenc}
 \usepackage[protrusion=true]{microtype}
 \usepackage[babel]{csquotes}
+\usepackage{hyperref}
+\usepackage{tabularx}
 
 \usepackage[sc]{mathpazo}
 \linespread{1.05} 
 
 \usepackage{xspace}
 
+% Indentation des paragraphes
 \setlength{\parindent}{10pt}
+% Sauts de ligne entre les paragraphes
 \setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex}
 %\setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex}
+
+% Pas de numérotation au-delà des chapitres
+\setcounter{secnumdepth}{\chapternumdepth}
 
 \title{A book title}   
 \author{Author Name} 
