@@ -1,0 +1,154 @@
+%
+% Body text font is Palatino!
+%
+
+\documentclass[a5paper,pagesize,10pt,bibtotoc,pointlessnumbers,
+normalheadings,DIV=9,twoside=false]{scrbook}
+
+% twoside, openright
+\KOMAoptions{DIV=last}
+
+\usepackage{trajan}
+ 
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[protrusion=true]{microtype}
+\usepackage[babel]{csquotes}
+
+\usepackage[sc]{mathpazo}
+\linespread{1.05} 
+
+\usepackage{xspace}
+
+\setlength{\parindent}{10pt}
+\setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex}
+%\setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex}
+
+\title{A book title}   
+\author{Author Name} 
+\date{\today} 
+
+\begin{document}
+
+
+%=========================================
+\begin{titlepage}
+		\centering{
+			{\fontsize{40}{48}\selectfont 
+			A book title}
+		}\\
+			
+		\vspace{10mm}
+		\centering{\Large{Author Name}}\\
+		\vspace{\fill}
+		\centering \large{2011}
+\end{titlepage}
+
+
+%=========================================
+\newpage{}
+\thispagestyle {empty}
+
+\vspace*{2cm}
+
+\begin{center}
+	\Large{\parbox{10cm}{
+		\begin{raggedright}
+		{\Large 
+			\textit{Do what you think is interesting, 
+			do something that you think is fun and worthwhile, 
+			because otherwise you won’t do it well anyway.}
+		}
+	
+		\vspace{.5cm}\hfill{---Brian W. Kernighan}
+		\end{raggedright}
+	}
+}
+\end{center}
+
+\newcommand\keywords[3]{%
+	\section*{Mots-clés :}
+
+	\textbf{Cadre} : #1
+
+	\textbf{Genre} : #2
+
+	\textbf{Thème} : #3
+}%
+
+\newcommand\medfan[1]{%
+	\emph{medfan}
+}%
+
+\newpage
+
+
+%=========================================
+\chapter*{Préambule}
+
+Cet ouvrage est un ensemble de 31 scénarios hétéroclites conçus pour être joués dans des jeux de rôle sur table.
+La plupart de ces histoires sont volontairement ouvertes, laissant aux joueurs et joueuses le soin de combler les vides et de préciser les flous par leur imagination.
+Grâce à cette liberté d'interprétation, les scénarios ne sont attachés ni à des systèmes spécifiques, ni à des univers particuliers.
+
+Chaque scénario est décrit par trois mots-clés :
+\begin{itemize}
+	\item le cadre dans lequel il a été imaginé,
+	\item le genre d'histoire racontée,
+	\item le thème de l'aventure.
+\end{itemize}
+
+Un index en fin d'ouvrage permet de retrouver la liste des scénarios relevant des différents mots-clés.
+Ceux-ci sont toutefois à prendre comme des indications et non des obligations.
+La plupart des aventures peuvent aisément être transposées d'un cadre à un autre voire d'un genre à un autre.
+
+Bonne lecture !
+
+\chapter{L'anneau gardien}
+\keywords{\medfan}{Aventure}{Objet magique, malédiction, altruisme}
+
+\section{Scénario}
+
+\subsection*{Commentaire}
+
+Ce scénario peut être facilement joué en parallèle d'une campagne \emph{medfan}, il suffit qu'un personnage obtienne l'anneau du titre.
+C'est encore mieux si les joueurs l'utilisent régulièrement de leur propre chef.
+
+La guerrière peut être remplacée par n'importe quelle figure combattante du moment qu'elle est suffisamment puissante pour servir d'ange gardien.
+
+\subsection*{Accroche}
+
+Les personnages entrent en possession d'un anneau magique.
+
+\subsection*{Péripéties}
+
+À chaque fois que la personne qui porte l'anneau est en danger de mort, une puissante guerrière se matérialise à proximité pour la tirer de ce mauvais pas.
+Une fois le porteur en sécurité, la guerrière disparaît sans un mot et se contente de jeter un regard furieux en direction du groupe.
+
+Chaque invocation semble l'énerver encore plus mais tout effort de lui parler est vain: elle ne parle pas et ne semble de toute façon pas les comprendre.
+
+Au fil du temps, certaines de ses apparitions deviennent étranges. Parfois, la guerrière apparaît sans armes ni armures.
+Une fois, elle se matérialise même un morceau de poulet à la main.
+
+Un jour, elle finit par se matérialiser, tenant un morceau de papier à la main écrit dans une langue étrangère.
+Après l'avoir déchiffré, le message dit ceci:
+\blockquote{L'anneau est maudit. J'ai une famille et une vie. Je n'ai pas demandé à servir d'ange gardien. Le forgeron qui l'a créé est prisonnier des geôles royales. Trouvez-le et faites-lui lever la malédiction. S'il vous plaît.}
+
+
+\textbf{Explications}: le forgeron est un sorcier malchanceux fuyant la guerre qui ravage une nation voisine.
+Craignant pour sa vie, il a embauché des mercenaires pour l'escorter jusqu'au royaume des personnages mais alors que l'argent est venu à manquer, il s'est retrouvé sans aucune protection.
+Pour assurer ses arrières, il n'a alors rien trouvé de mieux pour assurer sa sécurité que de lier l'âme d'une grande aventurière à la retraite -- croisée au hasard de son voyage -- à son anneau.
+
+Une fois arrivé, le sorcier-forgeron a posé ses valises dans la capitale et s'y est établi comme fabriquant d'objets magiques.
+Malheureusement, n'étant pas un bon gestionnaire, il s'est rapidement retrouvé criblé de dettes auprès du royaume, incapable d'honorer les commandes du gouvernement.
+La milice l'a alors mis en prison avant de piller son échoppe et de vendre ses biens aux enchères pour rembourser ses dettes.
+De fil en aiguille, l'anneau a ainsi échappé à son propriétaire et la guerrière subit tant bien que mal les aventures de son porteur, régulièrement importunée par ces invocations involontaires.
+
+\subsection*{Résolution}
+
+Plusieurs façons de lever le sortilège sont envisageables.
+Si les personnages sont versés en magie, peut-être qu'un rituel impliquant la guerrière en personne pourrait briser le lien entre elle et l'anneau.
+Ou bien peut-être qu'il suffirait de substituer une nouvelle âme pour libérer celle qui se trouve actuellement liée.
+Enfin, en retrouvant la trace du sorcier, celui serait sûrement prêt à annuler son sort si on le sort des geôles, en payant ses dettes\dots ou bien par la force.
+
+\end{document}
