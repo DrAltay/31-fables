@@ -2,8 +2,8 @@
 % Body text font is Palatino!
 %
 
-\documentclass[a5paper,pagesize,10pt,bibliography=totoc,numbers=noenddot,
-headings=normal,DIV=9,twoside=false]{scrbook}
+\documentclass[a5paper,pagesize,10pt,bibliography=totoc,numbers=enddot,
+headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 
 % twoside, openright
 \KOMAoptions{DIV=last}
@@ -16,13 +16,18 @@ headings=normal,DIV=9,twoside=false]{scrbook}
 \usepackage[protrusion=true]{microtype}
 \usepackage[babel]{csquotes}
 % Désactive l'étiquette de la figure dans les légendes
-\usepackage[labelformat=empty]{caption}
-\usepackage{hyperref}
+\usepackage[labelformat=empty,skip=10pt,tableposition=above]{caption}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{enumitem}
+\setlist[itemize]{topsep=2pt}
 
-\usepackage[sc]{mathpazo}
-\linespread{1.05} 
-
+\usepackage[table]{xcolor}
+\newcommand\colortablerows{%
+	\overlock
+	\rowcolors{2}{gray!15}{white}
+}%
 \usepackage{xspace}
 
 % Indentation des paragraphes
@@ -34,26 +39,42 @@ headings=normal,DIV=9,twoside=false]{scrbook}
 % Pas de numérotation au-delà des chapitres
 \setcounter{secnumdepth}{\chapternumdepth}
 
-\title{A book title}   
-\author{Author Name} 
-\date{\today} 
+% Police de caractère générale
+\usepackage[sc]{mathpazo}
+\linespread{1.05} 
+% Police de caractères des titres
+\usepackage{LobsterTwo}
+\usepackage{overlock}
+\addtokomafont{chapter}{\LobsterTwo}
+\addtokomafont{disposition}{\overlock}
+\addtokomafont{caption}{\overlock}
+\setmainfont
+     [ BoldFont       = texgyrepagella-bold.otf ,
+       ItalicFont     = texgyrepagella-italic.otf ,
+       BoldItalicFont = texgyrepagella-bolditalic.otf ]
+     {texgyrepagella-regular.otf}
+
+\title{A book title}
+\author{Author Name}
+\date{2020}
 
 \begin{document}
 
 
 %=========================================
+\makeatletter
 \begin{titlepage}
 		\centering{
 			{\fontsize{40}{48}\selectfont 
-			A book title}
+			\@title}
 		}\\
 			
 		\vspace{10mm}
-		\centering{\Large{Author Name}}\\
+		\centering{\Large{\@author}}\\
 		\vspace{\fill}
-		\centering \large{2011}
+		\centering \large{\@date}
 \end{titlepage}
-
+\makeatother
 
 %=========================================
 \newpage{}
