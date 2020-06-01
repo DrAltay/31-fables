@@ -9,7 +9,7 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 \KOMAoptions{DIV=last}
 
 \usepackage{trajan}
- 
+\usepackage{calc} 
 \usepackage[french]{babel}
 %\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -20,6 +20,8 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 \usepackage[hidelinks]{hyperref}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{zref-savepos}
 \usepackage{enumitem}
 \setlist[itemize]{topsep=2pt}
 
@@ -109,6 +111,28 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 
 \newcommand\medfan[1]{%
 	\emph{medfan}
+}%
+
+\newcommand{\filltopageendgraphics}[2][]{%
+  \par
+  \zsaveposy{top-\thepage}% Mark (baseline of) top of image
+  \vfill
+  \zsaveposy{bottom-\thepage}% Mark (baseline of) bottom of image
+  \def\thisheight{\dimexpr\zposy{top-\thepage}sp-\zposy{bottom-\thepage}sp\relax}
+  %\smash{
+  \begin{figure}[h]
+	\centering
+	\includegraphics[height=\ifdim\thisheight<0.3\textheight \thisheight \else 0.3\textheight \fi,#1]{#2}
+  \end{figure}
+  %}%
+  \par
+}%
+
+\newcommand\illustration[1]{%
+%	\begin{figure}[h]
+%		\centering
+		\filltopageendgraphics{images/#1}
+%	\end{figure}
 }%
 
 \newpage
