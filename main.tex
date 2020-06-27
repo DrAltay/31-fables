@@ -14,23 +14,44 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 %\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[protrusion=true]{microtype}
+\usepackage{multicol}
 \usepackage[babel]{csquotes}
 % Désactive l'étiquette de la figure dans les légendes
 \usepackage[labelformat=empty,skip=10pt,tableposition=above]{caption}
-\usepackage[hidelinks]{hyperref}
+\usepackage[toc]{appendix}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{zref-savepos}
-\usepackage{enumitem}
-\setlist[itemize]{topsep=2pt}
-
 \usepackage[table]{xcolor}
+\usepackage{xspace}
+\usepackage{pifont}
+\usepackage{siunitx}
+\DeclareSIUnit{\million}{\text{M}}
+\usepackage{tcolorbox}
+\usepackage[pages=some,firstpage=true]{background}
+\backgroundsetup{scale=1,angle=0,opacity=0.8,pages=some,color=black,contents={%
+	\includegraphics[width=\paperwidth,height=\paperheight]{images/vintage}
+	}%
+}
+
+\usepackage{enumitem}
+\setlist[itemize]{label=\ding{118},topsep=2pt,itemsep=0pt,partopsep=3pt}
+
 \newcommand\colortablerows{%
 	\overlock
 	\rowcolors{2}{gray!15}{white}
 }%
-\usepackage{xspace}
+
+% Index
+\usepackage[splitindex]{imakeidx}
+%\usepackage{index}
+\makeindex[name=cadre,title=Cadre]
+\makeindex[name=genre,title=Genre]
+\makeindex[name=theme,title=Thématiques]
+%\newindex{cadre}{cax}{cad}{Cadre}
+%\newindex{genre}{gex}{ged}{Genre}
+%\newindex{theme}{thx}{thd}{Thème}
 
 % Indentation des paragraphes
 \setlength{\parindent}{10pt}
@@ -43,6 +64,8 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 
 % Police de caractère générale
 \usepackage[sc]{mathpazo}
+% Hyperref
+\usepackage[hidelinks]{hyperref}
 \linespread{1.05} 
 % Police de caractères des titres
 \usepackage{LobsterTwo}
@@ -50,14 +73,19 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 \addtokomafont{chapter}{\LobsterTwo}
 \addtokomafont{disposition}{\overlock}
 \addtokomafont{caption}{\overlock}
+\RedeclareSectionCommand[beforeskip=10pt]{chapter}
+\RedeclareSectionCommand[beforeskip=3pt,afterskip=3pt]{section}
+\RedeclareSectionCommand[beforeskip=3pt,afterskip=1pt]{subsection}
+\RedeclareSectionCommand[beforeskip=1pt,afterskip=1pt]{subsubsection}
 \setmainfont
      [ BoldFont       = texgyrepagella-bold.otf ,
        ItalicFont     = texgyrepagella-italic.otf ,
        BoldItalicFont = texgyrepagella-bolditalic.otf ]
      {texgyrepagella-regular.otf}
 
-\title{A book title}
-\author{Author Name}
+\title{\scshape{31 fables\\\medskip à jouer}}
+\author{\scshape{Altay}}
+\def\subtitle{Un recueil de scénarios pour jeux de rôle sur table}
 \date{2020}
 
 \begin{document}
@@ -69,9 +97,17 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 		\centering{
 			{\fontsize{40}{48}\selectfont 
 			\@title}
+
+			\vspace{2cm}
+
+			{\fontsize{20}{28}\selectfont
+			\subtitle}
 		}\\
-			
-		\vspace{10mm}
+		
+		\vfill
+		%\vspace{10mm}
+		\centering\includegraphics[width=0.8\textwidth]{images/skull}
+		\vfill
 		\centering{\Large{\@author}}\\
 		\vspace{\fill}
 		\centering \large{\@date}
@@ -84,33 +120,81 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
 
 \vspace*{2cm}
 
-\begin{center}
-	\Large{\parbox{10cm}{
-		\begin{raggedright}
-		{\Large 
-			\textit{Do what you think is interesting, 
-			do something that you think is fun and worthwhile, 
-			because otherwise you won’t do it well anyway.}
-		}
-	
-		\vspace{.5cm}\hfill{---Brian W. Kernighan}
-		\end{raggedright}
-	}
-}
-\end{center}
+%\begin{center}
+%	\Large{\parbox{10cm}{
+%		\begin{raggedright}
+%		{\Large 
+%			\textit{Do what you think is interesting, 
+%			do something that you think is fun and worthwhile, 
+%			because otherwise you won’t do it well anyway.}
+%		}
+%	
+%		\vspace{.5cm}\hfill{---Brian W. Kernighan}
+%		\end{raggedright}
+%	}
+%}
+%\end{center}
 
 \newcommand\keywords[3]{%
-	\section*{Mots-clés :}
-
-	\textbf{Cadre} : #1
-
-	\textbf{Genre} : #2
-
-	\textbf{Thème} : #3
+\begin{tcolorbox}[sharp corners=west, arc=5mm, title=Mots-clés:,fonttitle=\bfseries\large\overlock,boxsep=0mm,toptitle=1mm,bottomtitle=1mm]
+%	\section*{Mots-clés :}
+	\paragraph{Cadre}~~~~~~~:~~~~ #1\\
+	\paragraph{Genre}~~~~~~~:~~~~ #2\\
+	\paragraph{Thèmes}~~~~:~~~~ #3
+\end{tcolorbox}
 }%
 
 \newcommand\medfan[1]{%
-	\emph{medfan}
+	\emph{medfan}\index[cadre]{Médiéval fantastique}
+}%
+\newcommand\generique[1]{%
+	générique\index[cadre]{Générique}
+}%
+\newcommand\contemporain[1]{%
+	contemporain\index[cadre]{Contemporain}
+}%
+\newcommand\guerrefroide[1]{%
+	guerre froide\index[cadre]{Guerre froide}
+}%
+\newcommand\postapo[1]{%
+	post-apo\index[cadre]{Post-apocalyptique}
+}%
+\newcommand\antique[1]{%
+	Antiquité\index[cadre]{Antiquité}
+}%
+\newcommand\cyberpunk[1]{%
+	\emph{cyberpunk}\index[cadre]{Cyberpunk/anticipation}
+}%
+\newcommand\superheros[1]{%
+	super-héroïque\index[cadre]{Super-héroïque}
+}%
+\newcommand\pirate[1]{%
+	pirate\index[cadre]{Piraterie}
+}%
+\newcommand\scifi[1]{%
+	science-fiction\index[cadre]{Science-fiction}
+}%
+\newcommand\western[1]{%
+	\emph{western}\index[cadre]{Western}
+}%
+\newcommand\steampunk[1]{%
+	\emph{Steampunk}\index[cadre]{Steampunk}
+}%
+\newcommand\retro[1]{%
+	\emph{entre-deux-guerres}\index[cadre]{Entre-deux-guerres}
+}%
+
+\newcommand\aventure[1]{%
+	aventure\index[genre]{Aventure}
+}%
+\newcommand\action[1]{%
+	action\index[genre]{Action}
+}%
+\newcommand\intrigue[1]{%
+	intrigue\index[genre]{Intrigue}
+}%
+\newcommand\enquete[1]{%
+	enquête\index[genre]{Enquête}
 }%
 
 \newcommand{\filltopageendgraphics}[2][]{%
@@ -128,20 +212,29 @@ headings=normal,DIV=9,twoside=false,tablecaptionabove]{scrbook}
   \par
 }%
 
-\newcommand\illustration[1]{%
-%	\begin{figure}[h]
-%		\centering
-		\filltopageendgraphics{images/#1}
-%	\end{figure}
+\newfontfamily\quotefont{Linux Biolinum O}
+\AtBeginEnvironment{quote}{\quotefont}
+
+\newcommand\illustration[2][0.5\textwidth]{%
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=#1]{images/#2}
+	\end{figure}
 }%
 
 \newpage
 
 
 %=========================================
+\begingroup
+\let\clearpage\relax
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{images/books}
+\end{figure}
+\vspace{-3em}
 \chapter*{Préambule}
 
-Cet ouvrage est un ensemble de 31 scénarios hétéroclites conçus pour être joués dans des jeux de rôle sur table.
+Cet ouvrage est un ensemble de 31 scénarios divers conçus pour être joués dans des jeux de rôle sur table.
 La plupart de ces histoires sont volontairement ouvertes, laissant aux joueurs et joueuses le soin de combler les vides et de préciser les flous par leur imagination.
 Grâce à cette liberté d'interprétation, les scénarios ne sont attachés ni à des systèmes spécifiques, ni à des univers particuliers.
 Les différentes aventures font donc la part belle à l'improvisation.
@@ -153,7 +246,7 @@ Chaque scénario est décrit par trois mots-clés :
 	\item le thème de l'aventure.
 \end{itemize}
 
-Un index en fin d'ouvrage permet de retrouver la liste des scénarios relevant des différents mots-clés.
+Un \hyperref[index]{index} en fin d'ouvrage permet de retrouver la liste des scénarios relevant des différents mots-clés.
 Ceux-ci sont toutefois à prendre comme des indications et non des obligations.
 La plupart des aventures peuvent aisément être transposées d'un cadre à un autre voire d'un genre à un autre.
 
@@ -163,84 +256,39 @@ Les péripéties forment le gros de l'aventure et contient les éléments d'hist
 Enfin, la résolution décrit différentes pistes concernant les façons de conclure l'aventure.
 
 Les protagonistes des différentes histoires ne sont généralement pas nommés pour vous permettre d'y insérer les personnages de votre choix.
-Toutefois, à chaque scénario est associée la description d'une entité (un personnage ou un lieu), décrivant en deux lignes l'ambiance de l'endroit, le caractère de cet individu, etc.
+Toutefois, à certains scénarios est associée la description d'une entité (un personnage ou un lieu), décrivant en deux lignes l'ambiance de l'endroit, le caractère de cet individu, etc.
 À vous de choisir si vous utilisez ces informations, elles ne sont là que pour faciliter la préparation du scénario!
 
 Pour simplifier la lecture et éviter la confusion entre les personnages et les personnes qui les incarnent, nous parlerons des personnages au masculin et des joueuses au féminin.
 L'intégralité des protagonistes des histoires qui suivent peuvent néanmoins être du genre que vous souhaitez.
 
+
+Pour finir, le contenu de cet ouvrage est sous licence \href{https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr}{Creative Commons CC-BY-NC-SA 4.0}. C'est-à-dire que vous pouvez partager ce recueil, le modifier et le diffuser à deux conditions: mentionner l'œuvre originale et ne pas en faire d'usage commercial.
+
+J'espère que vous trouverez votre bonheur dans au moins une des 31 histoires qui suivent.
+
 Bonne lecture!
+
+\vfill
+\hfill
+\begin{minipage}{0.40\textwidth}
+	\includegraphics[width=\textwidth]{images/cc.logo.eps}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.41\textwidth}
+	%\includegraphics[width=0.2\textwidth]{images/cc.eps}%
+	\includegraphics[width=0.25\textwidth]{images/by.eps}%
+	\includegraphics[width=0.25\textwidth]{images/nc.eps}%
+	\includegraphics[width=0.25\textwidth]{images/sa.eps}%
+	\includegraphics[width=0.25\textwidth]{images/remix.eps}%
+\end{minipage}
+\hfill
+\endgroup
 
 \setcounter{tocdepth}{0}
 \tableofcontents
 
-\chapter{L'anneau gardien}
-\keywords{\medfan}{Aventure}{Objet magique, malédiction}
-
-\section{Scénario}
-
-Ce scénario peut être facilement joué en parallèle d'une campagne \emph{medfan}, il suffit qu'un personnage obtienne l'anneau tutélaire lors d'une de ses aventures.
-C'est encore mieux si les joueuses utilisent régulièrement l'anneau de leur propre chef.
-
-La guerrière peut être remplacée par n'importe quelle figure combattante du moment qu'elle est suffisamment puissante pour servir d'ange gardien au porteur de l'anneau.
-
-\subsection*{Accroche}
-
-Les personnages entrent en possession d'un anneau magique.
-
-\subsection*{Péripéties}
-
-À chaque fois que la personne qui porte l'anneau est en danger de mort, une puissante guerrière se matérialise à proximité pour la tirer de ce mauvais pas.
-Une fois le porteur en sécurité, la guerrière disparaît sans un mot et se contente de jeter un regard furieux en direction du groupe.
-
-Chaque invocation semble l'énerver encore plus mais tout effort de lui parler est vain: elle ne parle pas et ne semble de toute façon pas comprendre les personnages.
-
-Au fil du temps, certaines de ses apparitions deviennent étranges.
-Une fois, la guerrière apparaît sans ses armes ni son armure. Une autre fois, elle tient un morceau de poulet à moitié mangé dans sa main droite.
-
-Finalement, le jour d'une énième invocation, elle se matérialise avec un bout de papier dans les mains.
-Celui-ci est écrit dans une langue étrangère mais après l'avoir déchiffré, le message est le suivant:
-\blockquote{L'anneau est maudit. J'ai une famille et une vie. Je n'ai pas demandé à servir d'ange gardien. Le forgeron qui l'a créé est prisonnier des geôles royales. Trouvez-le et faites-lui lever la malédiction. S'il vous plaît.}
-
-En réalité, le forgeron est un sorcier malchanceux fuyant la guerre qui ravage une nation voisine.
-Craignant pour sa vie, il a embauché des mercenaires pour l'escorter jusqu'au royaume où se trouvent les personnages mais alors que l'argent est venu à manquer, il s'est retrouvé sans aucune protection.
-Pour assurer ses arrières, il n'a alors rien trouvé de mieux pour que de lier l'âme d'une grande aventurière à la retraite -- croisée au hasard de son voyage -- à son anneau.
-Ce faisant, il l'a contrainte à devenir la garante de sa sécurité, s'achetant ainsi une certaine tranquilité.
-
-Une fois son périple achevé, le sorcier-forgeron a posé ses valises dans la capitale et s'y est établi comme fabriquant d'objets magiques.
-Malheureusement, n'étant pas un bon gestionnaire, il s'est rapidement retrouvé criblé de dettes auprès du royaume, incapable d'honorer les commandes du gouvernement.
-La milice l'a alors mis en prison avant de piller son échoppe.
-Ses biens fûrent vendus aux enchères pour éponger ses dettes et, de fil en aiguille, l'anneau a ainsi échappé à son propriétaire.
-La guerrière s'accomode tant bien que mal des aventures de ses porteurs successifs, régulièrement importunée dans sa retraite par ces invocations involontaires.
-
-\subsection*{Résolution}
-
-Plusieurs façons de lever le sortilège sont envisageables.
-Si vos personnages sont versés en magie, peut-être qu'ils seraient capable de concevoir par eux-mêmes un rituel, à effectuer en présence de la guerrière, qui pourrait briser le lien entre elle et l'anneau.
-Ou bien peut-être qu'une solution serait simplement de substituer une nouvelle âme à celle actuellement liée à l'anneau.
-Enfin, une troisième solution serait de retrouver la trace du sorcier.
-Celui-ci est sûrement prêt à défaire sa magie en échange d'un moyen d'échapper à sa captivité, par exemple en payant ses dettes\dots ou en usant de la force pour le faire s'évader..
-
-\subsection*{Personnage: la guerrière}
-
-\newcommand\descriptionperso[5]{%
-	\begin{minipage}{0.7\textwidth}
-	\textbf{Caractère}: #1
-
-	\textbf{Force}: #2
-
-	\textbf{Faiblesse}: #3
-
-	\textbf{Objectif}: #4
-
-	#5
-	\end{minipage}
-}%
-
-\descriptionperso{sûre d'elle, exaspérée}{combat, stratégie}{ne parle pas la langue, maudite}{être tranquille}{Aventurière légendaire d'un pays lointain ayant raccroché les armes pour prendre sa retraite. Liée à un anneau magique, elle est régulièrement importunée par des invocations non-sollicitées}
-
-\illustration{ring}
-
+\input{stories/1.tex}
 \input{stories/2.tex}
 \input{stories/3.tex}
 \input{stories/4.tex}
@@ -272,4 +320,260 @@ Celui-ci est sûrement prêt à défaire sa magie en échange d'un moyen d'écha
 \input{stories/30.tex}
 \input{stories/31.tex}
 
+\appendix
+
+\chapter{Tables aléatoires}
+
+Pour plus de facilité au moment de l'improvisation, voici une sélection de noms et prénoms parmi les plus courants dans le monde entier.
+
+\paragraph{Comment utiliser ces tables?} Il suffit de tirer 1d4 ou 1d8 pour les dizaines et un 1d10 pour les unités puis de consulter la ligne associée au nombre obtenu dans les listes ci-dessous.
+
+\section{Noms de famille}
+
+\begin{multicols}{3}
+\begin{enumerate}
+	\item Rakotomalala
+	\item Molefe
+	\item Andersson
+	\item Chen
+	\item Latu
+	\item Ali
+	\item Abdou
+	\item Devi
+	\item Martin
+	\item Lopez
+	\item Saint-Pierre
+	\item Jónsdóttir
+	\item Alaoui
+	\item Perera
+	\item Lopes
+	\item Cohen
+	\item Murphy
+	\item Ibrahim
+	\item Lawson
+	\item Hernandez
+	\item Liu
+	\item Kim
+	\item Papadopoulos
+	\item Rossi
+	\item Hansen
+	\item Clarke
+	\item Wang
+	\item Müller
+	\item Sharipov
+	\item Khan
+	\item Ivanova
+	\item Melknik
+	\item Williams
+	\item Satō
+	\item Da Silva
+	\item Traore
+	\item Trabelsi
+	\item Garcia
+	\item Smith
+	\item Peeters
+\end{enumerate}
+\end{multicols}
+\section{Prénoms}
+
+\begin{multicols}{3}
+\begin{enumerate}
+	\item Moussa
+	\item Marc
+	\item Prasert
+	\item Mateo
+	\item Wei
+	\item Fang
+	\item Emma
+	\item Aicha
+	\item Daniel
+	\item Lili
+	\item Mia
+	\item Stefan
+	\item Nour
+	\item Harper
+	\item Matilde
+	\item Zineb
+	\item Farrah
+	\item Junior
+	\item Aurora
+	\item Alice
+	\item Karim
+	\item Tamatoa
+	\item Meriem
+	\item Ivana
+	\item Tereza
+	\item Sarah
+	\item Taylor
+	\item David
+	\item Jean-Claude
+	\item Esperanza
+	\item Itsuki
+	\item Jayden
+	\item Nicole
+	\item Oscar
+	\item Kamal
+	\item Zoé
+	\item Anna
+	\item Jackson
+	\item Mareva
+	\item Abigail
+	\item Lucas
+	\item Amanda
+	\item Jian
+	\item Jack
+	\item James
+	\item Dylan
+	\item Sita
+	\item Elias
+	\item Vicente
+	\item George
+	\item Angel
+	\item Juliette
+	\item Mihail
+	\item Sarah
+	\item Abdelkader
+	\item Carlos
+	\item Esther
+	\item Liam
+	\item Marie-Paule
+	\item Alejandro
+	\item Ayaan
+	\item Jakob
+	\item Logan
+	\item Jade
+	\item Juan
+	\item Louise
+	\item Omar
+	\item Ha-yoon
+	\item Sofia
+	\item Saanvi
+	\item Artyom
+	\item Elizabeth
+	\item Charlotte
+	\item Bruno
+	\item Sakura
+	\item Nathaniel
+	\item Noam
+	\item Mei
+	\item Brianna
+	\item Jun-seo
+\end{enumerate}
+\end{multicols}
+
+\section{Personnalité}
+
+La liste suivante est une petite sélection d'adjectifs pour donner de la profondeur à vos personnages non-joueurs. Vous pouvez sans problème en tirer deux voire trois pour les protagonistes majeurs.
+
+\begin{multicols}{3}
+\begin{enumerate}
+	\item Bout-en-train
+	\item Conciliante
+	\item Hédoniste
+	\item Naïf
+	\item Militante
+	\item Courageuse
+	\item Rustre
+	\item Cynique
+	\item Méfiant
+	\item Comique
+	\item Enthousiaste
+	\item Manuel
+	\item Menteuse
+	\item Commerçant
+	\item Cupide
+	\item Cultivée
+	\item Nihiliste
+	\item Technocrate
+	\item Charitable
+	\item Sportive
+	\item Idéaliste
+	\item Séducteur
+	\item Condescendante
+	\item Pourri-gâté
+	\item Sympathique
+	\item Dépressif
+	\item Excentrique
+	\item Susceptible
+	\item Arriviste
+	\item Hypocrite
+	\item Malin
+	\item Baratineur
+	\item Autoritaire
+	\item Paternaliste
+	\item Xénophobe
+	\item Vicieux
+	\item Sauvage
+	\item Blasée
+	\item Artiste
+	\item Intimidant
+\end{enumerate}
+\end{multicols}
+\begin{center}
+	\includegraphics[width=0.3\textwidth]{images/phrenology}
+\end{center}
+
+\onecolumn
+\begingroup
+\let\clearpage\relax
+\label{index}
+\printindex[cadre]
+\printindex[genre]
+\newpage
+\printindex[theme]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{images/end}
+\end{center}
+\clearpage
+
+\newpage
+\vspace*{-4em}
+\chapter*{Images}
+\vspace{-1.5em}
+\small
+\newcommand\creditimg[4]{%
+	#1: \href{#3}{#2} (#4)
+}%
+\newcommand\cczero{CC0}
+\newcommand\pixabay{Pixabay}
+\subsubsection*{Couverture et introduction}
+\creditimg{Décorations}{Gordon Johnson}{https://pixabay.com/fr/vectors/vintage-cadre-dessin-au-trait-f\%C3\%A9e-5138621/}{\pixabay};
+\creditimg{Crâne et bibliothèque}{Colleen O'Dell}{https://pixabay.com/fr/vectors/cr\%C3\%A2ne-la-biblioth\%C3\%A8que-assistant-4109212/}{\pixabay};
+\creditimg{Livres}{Colleen O'Dell}{https://pixabay.com/fr/vectors/livres-la-biblioth\%C3\%A8que-plateau-4109214/}{\pixabay}
+
+
+\subsubsection*{Illustrations des histoires}
+\creditimg{Anneau au diamant}{j4p4n}{https://openclipart.org/detail/203345/diamond-ring}{\cczero};
+\creditimg{Tronçonneuse}{JicJac}{https://openclipart.org/detail/662/chain-saw}{\cczero};
+\creditimg{Couteaux dans le dos}{Bellinon}{https://pixabay.com/fr/illustrations/homme-couteau-essorage-d\%C3\%A9pression-4083527/}{\pixabay};
+\creditimg{Station MIR}{David S. F. Portree/NASA}{https://commons.wikimedia.org/wiki/File:RP1357_p104_The_Mir_complex_as_of_June_1994.svg}{domaine public};
+\creditimg{Pont de Sydney}{Gordon Johnson}{https://pixabay.com/fr/vectors/sydney-l-australie-pont-ville-2773440/}{\pixabay};
+\creditimg{Temple grec en ruine}{Kelly}{http://www.clker.com/clipart-192060.html}{domaine public};
+\creditimg{Silhouette de fée}{Gordon Johnson}{https://pixabay.com/fr/vectors/f\%C3\%A9es-f\%C3\%A9e-fantaisie-dessin-anim\%C3\%A9-2101944/}{\pixabay};
+\creditimg{Silhouette de bateau}{Gordon Johnson}{https://pixabay.com/fr/vectors/navire-bateau-silhouette-maritime-5198232/}{\pixabay};
+\creditimg{Engrenages}{Pete Linforth}{https://pixabay.com/fr/illustrations/engrenages-pi\%C3\%A8ces-grunge-machine-1381719/}{\pixabay};
+\creditimg{Saint-Michel}{extrait de \emph{Notice sur le château, les anciens seigneurs et la paroisse de Mauvezin, près Marmande} de R.L. Alis (1887)}{https://openclipart.org/detail/255311/st-michael}{domaine public};
+\creditimg{Phare}{extrait de \emph{The Story of Our Merchant Marine} de Willis J. Aboot (1919)}{https://openclipart.org/detail/11102/minots-ledge-light}{domaine public};
+\creditimg{Volcan}{extrait de \emph{Biography of a Grizzly} par Ernest Seton-Thompson (1900)}{https://openclipart.org/detail/6771/volcano}{domaine public};
+\creditimg{Groupe d'arbres}{warszawianka}{https://openclipart.org/detail/22448/group-of-trees}{\cczero};
+\creditimg{Silhouettes d'arbres}{Gordon Johnson}{https://pixabay.com/fr/vectors/nature-paysage-silhouette-arbres-4440363/}{\pixabay};
+\creditimg{Cobra}{extrait de \emph{Two Happy Years in Ceylon} par Constance Cumming (1892)}{https://openclipart.org/detail/232684/buddha-protected-by-a-cobra}{domaine public};
+\creditimg{Bateau et océan}{Last-Dino}{https://openclipart.org/detail/104863/ocean-theme-papercut}{\cczero};
+\creditimg{Jules César}{Gordon Johnson}{https://pixabay.com/fr/vectors/jules-c\%C3\%A9sar-romain-empereur-4206555/}{\pixabay};
+\creditimg{Chèvre}{extrait de \emph{Expedição portugueza ao Muatiânvua} par Henrique Dias De Carvalho (1890)}{https://openclipart.org/detail/224531/goat}{domaine public};
+\creditimg{Pleine lune}{AJ}{https://openclipart.org/detail/17926/moon}{\cczero};
+\creditimg{Frégate}{Firkin}{https://openclipart.org/detail/262079/frigate}{\cczero};
+\creditimg{Diable}{Librairie du Congrès}{https://openclipart.org/detail/4368/pointing-devil}{domaine public};
+\creditimg{Château-fort}{extrait de \emph{Handbook of the excursions proposed to be made by the Lincoln Diocesan Architectural Society} par Edward Trollope (1857)}{https://openclipart.org/detail/276666/castle-keep-2}{domaine public};
+\creditimg{Cage thoracique}{b0red}{https://pixabay.com/fr/vectors/f\%C5\%93tus-c\%C3\%B4tes-nervures-foetus-2936875/}{\pixabay};
+\creditimg{Gaufrier et gaufre}{\emph{Ready-To-Use Food and Drink Spot Illustrations} par Susan Gaber (1982)}{https://openclipart.org/detail/8212/waffle-and-waffle-iron}{domaine public};
+\creditimg{Boulon et vis}{NetRat}{https://openclipart.org/detail/104059/nut-bolt-monochrome}{\cczero};
+\creditimg{Silhouette de soldat}{Mohammed Hassan}{https://pixabay.com/fr/vectors/guerre-mondiale-soldat-ex\%C3\%A9cuter-2827031/}{\pixabay};
+\creditimg{Locomotive}{Gordon Johnson}{https://pixabay.com/fr/vectors/trains-locomotive-dessin-au-trait-4899589/}{\pixabay};
+\creditimg{Montagne et soleil}{Mitchell Johnson}{https://openclipart.org/detail/90073/mountain-seal-mitchell-j}{\cczero};
+\creditimg{Liasse de billets}{KTEditor}{https://pixabay.com/fr/illustrations/l-argent-de-tr\%C3\%A9sorerie-dollar-559970/}{\pixabay};
+\creditimg{Électro-aimant}{Firkin}{https://openclipart.org/detail/261627/electromagnet}{domaine public};
+\creditimg{Phrénologie}{Inconnu}{https://openclipart.org/detail/203415/phrenology-illustration}{domaine public};
+\creditimg{End}{Colleen O'Dell}{https://pixabay.com/fr/vectors/fin-sablier-la-fin-myst\%C3\%A9rieuse-4109186/}{\pixabay}
+\endgroup
 \end{document}
